@@ -3,7 +3,10 @@ A place to store progress of the NLP Project
 
 
 # Progress:
-Update [Garima] You can download the requirements.txt file and create your own conda environment with it and run the ipynb or py files to see output on a small sample of eli5 dataset.
+Update [Garima] 
+1. You can download the requirements.txt file and create your own conda environment with it and run the ipynb or py files to see output on a small sample of eli5 dataset.
+2. You can experiment with off-the-shelf rag sequence model trained on NQ dataset
+3. You can experiment with rag sequence model base with custom encoder and custom generator
 
 So far I have generated a dataset that contains -
 
