@@ -3,6 +3,8 @@ A place to store progress of the NLP Project
 
 
 # Progress:
+Update [Garima] You can download the requirements.txt file and create your own conda environment with it and run the ipynb or py files to see output on a small sample of eli5 dataset.
+
 So far I have generated a dataset that contains -
 
 All QA type data from MS Marco where there is a well formed answer present for a query. More details here - https://huggingface.co/datasets/ms_marco/viewer/v2.1/validation
