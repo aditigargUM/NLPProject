@@ -22,12 +22,12 @@ top_five_passages_index_list = []
 num_of_queries = len(queries)
 
 for index, tokenized_query in enumerate(tokenized_queries):
-    similarity_tuples_list = bm25.top_k_sentence(tokenized_query, k=5)
+    similarity_tuples_list = bm25.top_k_sentence(tokenized_query, k=10)
     similar_passages_index = [similarity_tuple[1] for similarity_tuple in similarity_tuples_list]
     top_five_passages_index_list.append(similar_passages_index)
     print("Done..... %d/%d" %(index, num_of_queries))
 
 
 
-with open("../generated_dataset/dev_okapi_bm_25_top5", "wb") as fp:   # Unpickling
+with open("../generated_dataset/dev_okapi_bm_25_top10", "wb") as fp:   # Unpickling
     pickle.dump(top_five_passages_index_list, fp)

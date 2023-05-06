@@ -7,7 +7,6 @@ data = json.load(f)
 print(data.keys())
 
 ## Delete all answers, query_type and query_id from the data
-data.pop('answers')
 data.pop('query_type')
 data.pop('query_id')
 
@@ -32,14 +31,24 @@ for q_ind in wfas_list.keys():
 
 # In a dictionary, store query_ind to {'query': '', 'passages': [], 'wellFormedAnswer': ''}
 query_details_passages = []
+num_train_queries = 15000
 
 for q_ind in data['query'].keys():
+	if (len(query_details_passages) >= num_train_queries):
+		break
 
-	query_details_passages.append({
-		'query': data['query'][q_ind],
-		'passages': [passage['passage_text'] for passage in data['passages'][q_ind]],
-		'wellFormedAnswer': data['wellFormedAnswers'][q_ind][0]
-	})
+	passages = [passage['passage_text'] for passage in data['passages'][q_ind]]
+	is_selected = [passage['is_selected'] for passage in data['passages'][q_ind]]
+	selected_passage_index = is_selected.index(1) if 1 in is_selected else -1
+
+	if selected_passage_index != -1:
+		selected_passage = passages[selected_passage_index]
+		query_details_passages.append({
+			'query': data['query'][q_ind],
+			'passages': passages,
+			'wellFormedAnswer': data['wellFormedAnswers'][q_ind][0],
+			'selectedPassage': selected_passage
+		})
 
 # Clearing memory
 del data
@@ -49,7 +58,7 @@ f.close()
 print(len(query_details_passages))
 # print(len(passage_url_to_text.keys()))
 
-with open("../generated_dataset/train_v2.1_query_details_passages", "wb") as fp:   #Pickling
+with open("../generated_dataset/_v2.1_query_details_passages", "wb") as fp:   #Pickling
 	pickle.dump(query_details_passages, fp)
 
 
