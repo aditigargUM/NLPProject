@@ -1,7 +1,7 @@
 import json
 import pickle
 
-f = open('../given_dataset/train_v2.1.json')
+f = open('../given_dataset/dev_v2.1.json')
 
 data = json.load(f)
 print(data.keys())
@@ -31,10 +31,10 @@ for q_ind in wfas_list.keys():
 
 # In a dictionary, store query_ind to {'query': '', 'passages': [], 'wellFormedAnswer': ''}
 query_details_passages = []
-num_train_queries = 15000
+num_dev_queries = 3000
 
 for q_ind in data['query'].keys():
-	if (len(query_details_passages) >= num_train_queries):
+	if (len(query_details_passages) >= num_dev_queries):
 		break
 
 	passages = [passage['passage_text'] for passage in data['passages'][q_ind]]
@@ -58,11 +58,11 @@ f.close()
 print(len(query_details_passages))
 # print(len(passage_url_to_text.keys()))
 
-with open("../generated_dataset/_v2.1_query_details_passages", "wb") as fp:   #Pickling
+with open("../generated_dataset/dev_v2.1_query_details_passages", "wb") as fp:   #Pickling
 	pickle.dump(query_details_passages, fp)
 
 
 # Sanity check
-with open("../generated_dataset/train_v2.1_query_details_passages", "rb") as fp:   # Unpickling
+with open("../generated_dataset/dev_v2.1_query_details_passages", "rb") as fp:   # Unpickling
  	query_details = pickle.load(fp)
  	print(len(query_details))
