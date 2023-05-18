@@ -1,6 +1,3 @@
-# NLPProject
-A place to store progress of the NLP Project
-
 # Dataset:
 
 The given dataset is obtained from - https://huggingface.co/datasets/ms_marco/viewer/v2.1/validation
@@ -20,7 +17,7 @@ To generate the dataset that we have been working with, please copy the training
 }
 
 
-# Combination of retriever-generator-decoder model:
+# Combination of retriever-generator-decoder models:
 
 ## Retriever:
 All the files for the retrievers are stored at /retriever-generator-combinations/retriever
@@ -38,10 +35,24 @@ All the files for the generators are stored at /retriever-generator-combinations
 - The output results for each retriever-generator-decoder combination are saved in files named in the following fashion => retrieverName_generatorName_decoderName_answers. As an example, we have stored t5 answers for passages obtained from DPR retriever generated using greedy decoding at /retriever-generator-combinations/generator/generator_results/t5_generator/bm25_top10_passages/bm25_t5_greedy_answers.
 - For each of these answers, we also store a corresponding analysis json file, stored at locations of the format /retriever-generator-combinations/generator/generator_results/t5_generator/bm25_top10_passages/bm25_t5_greedy_analysis.json. This file contains the list of 5 queries each of the lowest, middle and highest ROUGE-L precision, recall and f1 score. Along with the query, it also contains the corresponding well formed answers, the retrieved passages and the generated answer. These helped us perform human evaluation of various combinations of models.
 
-# Progress:
-Update [Garima] 
-1. You can download the requirements.txt file and create your own conda environment with it and run the ipynb or py files to see output on a small sample of eli5 dataset.
-2. You can experiment with off-the-shelf rag sequence model trained on NQ dataset
-3. You can experiment with rag sequence model base with custom encoder and custom generator
+Unified RAG models:
 
+## Indexing:
+All code to create embeddings and FAISS index is in /RAG/index
+- indexing-dpr is for generating embeddings and index using DPR encoders
+- indexing.ipynb and indexing.py is for generating embeddings and index using SentenceTransformer for DistillBERT TAS-B model
+- load_index_script.ipynb is sample script to load generated dataset and index
+
+## RAG-POC
+All code which was used to do proof-of-concept for unified RAG models intially.
+
+/RAG/generate_rag_format_files.ipynb is to convert the dataset into input files suitable for RAG finetuning
+
+## RAG finetuning and eval
+We primarily used https://github.com/huggingface/transformers/tree/main/examples/research_projects/rag for finetuning and evaluating our RAG models.
+We had to make changes to few files in this repository which are included in hf_rag_repo1 and hf_rag_repo2 for RAG model #1 and #2 mentioned in the report.
+
+ChatGPT as generator model:
+All code to integrate with ChatGPT APIs and use it to generate outputs for the three retriever configurations are in /chatgpt
+/chatgpt/chatgpt_responses has the outputs generated for these three configurations
 
