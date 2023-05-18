@@ -58,11 +58,11 @@ f.close()
 print(len(query_details_passages))
 # print(len(passage_url_to_text.keys()))
 
-with open("../generated_dataset/dev_v2.1_query_details_passages", "wb") as fp:   #Pickling
+with open("../test_query_passages_answer_list", "wb") as fp:   #Pickling
 	pickle.dump(query_details_passages, fp)
 
 
 # Sanity check
-with open("../generated_dataset/dev_v2.1_query_details_passages", "rb") as fp:   # Unpickling
+with open("../test_query_passages_answer_list", "rb") as fp:   # Unpickling
  	query_details = pickle.load(fp)
  	print(len(query_details))

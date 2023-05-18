@@ -1,10 +1,10 @@
 import pickle
 
-with open("../generated_dataset/train_v2.1_query_details_passages", "rb") as fp:   # Unpickling
+with open("../train_query_passages_answer_list", "rb") as fp:   # Unpickling
  	train_query_details_passages = pickle.load(fp)
 
 
-with open("../generated_dataset/dev_v2.1_query_details_passages", "rb") as fp:   # Unpickling
+with open("../test_query_passages_answer_list", "rb") as fp:   # Unpickling
  	dev_query_details_passages = pickle.load(fp)
 
 
@@ -25,7 +25,7 @@ for query_item in dev_query_details_passages:
 passages = list(passages_set)
 
 
-with open("../generated_dataset/passages", "wb") as fp:   # Unpickling
+with open("../passages", "wb") as fp:   # Unpickling
  	pickle.dump(passages, fp)
 
 

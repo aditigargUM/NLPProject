@@ -1,2 +1,11 @@
-/generated_dataset
-/given_dataset
+/dataset/passages
+/dataset/test_query_passages_answer_list
+/dataset/train_query_passages_answer_list
+/dataset/val_query_passages_answer_list
+/dataset/given_dataset
+
+/retriever-generator-combinations/generator/finetuned_models
+/retriever-generator-combinations/retriever/dpr/embeddings
+/retriever-generator-combinations/retriever/random_passages_list
+
+
