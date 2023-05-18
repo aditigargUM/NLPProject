@@ -35,7 +35,7 @@ All the files for the generators are stored at /retriever-generator-combinations
 - The output results for each retriever-generator-decoder combination are saved in files named in the following fashion => retrieverName_generatorName_decoderName_answers. As an example, we have stored t5 answers for passages obtained from DPR retriever generated using greedy decoding at /retriever-generator-combinations/generator/generator_results/t5_generator/bm25_top10_passages/bm25_t5_greedy_answers.
 - For each of these answers, we also store a corresponding analysis json file, stored at locations of the format /retriever-generator-combinations/generator/generator_results/t5_generator/bm25_top10_passages/bm25_t5_greedy_analysis.json. This file contains the list of 5 queries each of the lowest, middle and highest ROUGE-L precision, recall and f1 score. Along with the query, it also contains the corresponding well formed answers, the retrieved passages and the generated answer. These helped us perform human evaluation of various combinations of models.
 
-Unified RAG models:
+# Unified RAG models:
 
 ## Indexing:
 All code to create embeddings and FAISS index is in /RAG/index
