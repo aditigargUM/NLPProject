@@ -50,7 +50,8 @@ All code which was used to do proof-of-concept for unified RAG models intially.
 
 ## RAG finetuning and eval
 We primarily used https://github.com/huggingface/transformers/tree/main/examples/research_projects/rag for finetuning and evaluating our RAG models.
-We had to make changes to few files in this repository which are included in hf_rag_repo1 and hf_rag_repo2 for RAG model #1 and #2 mentioned in the report.
+Some bug-fixes we did:
+- Manually saved checkpoint after finetuning in /transformers/examples/research_projects/rag/lightning_base.py with "trainer.save_checkpoint("example.ckpt")" after "trainer.fit(model)" call.
 
 ChatGPT as generator model:
 All code to integrate with ChatGPT APIs and use it to generate outputs for the three retriever configurations are in /chatgpt
