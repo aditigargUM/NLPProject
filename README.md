@@ -53,7 +53,7 @@ We primarily used https://github.com/huggingface/transformers/tree/main/examples
 Some bug-fixes we did:
 - Manually saved checkpoint after finetuning in /transformers/examples/research_projects/rag/lightning_base.py with "trainer.save_checkpoint("example.ckpt")" after "trainer.fit(model)" call.
 
-ChatGPT as generator model:
+# ChatGPT as generator model:
 All code to integrate with ChatGPT APIs and use it to generate outputs for the three retriever configurations are in /chatgpt
 /chatgpt/chatgpt_responses has the outputs generated for these three configurations
 
