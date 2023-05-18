@@ -2,7 +2,7 @@ import openai
 import pickle
 import time
 
-openai.api_key = "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" # Use your own API Key here
+openai.api_key = "" # Use your own API Key here
 
 chat_output_dpr_file = './chatgpt_responses/output_dpr.pickle'
 
