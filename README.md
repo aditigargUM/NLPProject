@@ -52,6 +52,24 @@ All code which was used to do proof-of-concept for unified RAG models intially.
 We primarily used https://github.com/huggingface/transformers/tree/main/examples/research_projects/rag for finetuning and evaluating our RAG models.
 Some bug-fixes we did:
 - Manually saved checkpoint after finetuning in /transformers/examples/research_projects/rag/lightning_base.py with "trainer.save_checkpoint("example.ckpt")" after "trainer.fit(model)" call.
+- While using the DistillBERT TAS-B encoder [link](https://huggingface.co/sentence-transformers/msmarco-distilbert-base-tas-b), it was unable to be used in the original RAG setup in a straightforward manner. The reason behind this issue was that, when used inside a question encoder, this encoder outputs a tensor of all the word embeddings of the input query, as opposed to the expected behaviour of giving out only a single embedding representing the input query.
+
+In order to fix this, as a temporary fix, some code changes were made in the core library of the rag model present in huggingface `transformers`. In `modeling_rag.py` at line 987:
+
+Change the line to:
+```
+question_hidden_states = (self.question_encoder(input_ids, attention_mask=attention_mask)[0])[:,0,:]
+```
+
+This helps in selecting only the embeddings of the CLS token, rather than selecting all the embeddings.
+
+Similarly, in the line 1468 of `modeling_rag.py`, change the line to:
+
+```
+question_hidden_states = (self.question_encoder(input_ids, attention_mask=attention_mask)[0])[:,0,:]
+```
+
+This helps in using the said huggingface transformer seamlessly with our RAG setup
 
 # ChatGPT as generator model:
 All code to integrate with ChatGPT APIs and use it to generate outputs for the three retriever configurations are in /chatgpt
